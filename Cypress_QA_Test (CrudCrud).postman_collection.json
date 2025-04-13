@@ -1,0 +1,676 @@
+{
+	"info": {
+		"_postman_id": "e8027b4c-222f-49c8-8333-649a94b6602d",
+		"name": "API Testing - Cypress QA Test (CrudCrud)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33882958",
+		"_collection_link": "https://interstellar-astronaut-109044.postman.co/workspace/Lucas~7bf1b6d1-069c-4dc1-b684-2ec9b13bc946/collection/33882958-e8027b4c-222f-49c8-8333-649a94b6602d?action=share&source=collection_link&creator=33882958"
+	},
+	"item": [
+		{
+			"name": "Create a new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let json = pm.response.json();\r",
+							"pm.environment.set(\"userId\", json._id);\r",
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Cypress User\",\n    \"job\": \"QA Engineer\"\n}"
+				},
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create a new user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Cypress User\",\n    \"job\": \"QA Engineer\"\n}"
+						},
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Location",
+							"value": "/api/561d90b65e10481c8fa0928903c8645d/users/67fbaf745bbdf403e81eae55"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Length,Content-Range"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Cypress User\",\n    \"job\": \"QA Engineer\",\n    \"_id\": \"67fbaf745bbdf403e81eae55\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Validate user creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Validate user creation",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Length,Content-Range"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"67fbaf745bbdf403e81eae55\",\n    \"name\": \"Cypress User\",\n    \"job\": \"QA Engineer\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated Megatlon Tester\",\n    \"job\": \"Senior QA Engineer\"\n}"
+				},
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update user",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Megatlon Tester\",\n    \"job\": \"Senior QA Engineer\"\n}"
+						},
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:10 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Length,Content-Range"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Verify user update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Verify user update",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:12 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Length,Content-Range"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"67fbaf745bbdf403e81eae55\",\n    \"name\": \"Updated Megatlon Tester\",\n    \"job\": \"Senior QA Engineer\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete user",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:14 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Content-Length,Content-Range"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Confirm user deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"response_\" + pm.info.requestName, pm.response.text());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"crudcrud",
+						"com"
+					],
+					"path": [
+						"api",
+						"{{apiKey}}",
+						"users",
+						"{{userId}}"
+					]
+				},
+				"description": "This request should return a 404 status code."
+			},
+			"response": [
+				{
+					"name": "Confirm user deletion",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crudcrud.com/api/{{apiKey}}/users/{{userId}}",
+							"protocol": "https",
+							"host": [
+								"crudcrud",
+								"com"
+							],
+							"path": [
+								"api",
+								"{{apiKey}}",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.14.2"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 13 Apr 2025 12:35:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"traceId\": \"0HNBLPQK63FHK:00000001\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "userId",
+			"value": "e13875b51b274a14af69a03501594259",
+			"type": "string"
+		},
+		{
+			"key": "apiKey",
+			"value": "897b86b2136945fab9622cc3cbe17c09",
+			"type": "string"
+		}
+	]
+}
